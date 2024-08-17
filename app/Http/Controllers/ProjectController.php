@@ -26,11 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $data =
-            [
-                //
-            ];
-        return view('admin.project.create', $data);
+        return view('admin.project.create');
     }
 
     /**
