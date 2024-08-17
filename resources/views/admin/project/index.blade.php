@@ -22,14 +22,14 @@
                     <p>Link GitHub: <a href="{{$progetto->github_url}}">{{$progetto->github_url}}</a></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{{ route('admin.project.show', $progetto->id) }}" class="btn btn-primary p-">Vai ai dettagli</a>
-                    <a href="{{ route('admin.project.edit', $progetto->id) }}" class="btn btn-warning p-1">Modifica</a>
-                    {{-- <form action="{{ route('admin.project.destroy', $progetti->id) }}" method="POST
+                    <a href="{{ route('admin.project.show', $progetto->id) }}" class="btn btn-primary p-1">View Details</a>
+                    <a href="{{ route('admin.project.edit', $progetto->id) }}" class="btn btn-warning p-1">Edit</a>
+                    <form action="{{ route('admin.project.destroy', $progetto->id) }}" method="POST
                         " class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger p-1">Elimina</button>
-                    </form> --}}
+                        <button type="submit" class="btn btn-danger p-1">Delete</button>
+                    </form>
                 </div>
             </div>
         @endforeach
