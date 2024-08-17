@@ -43,7 +43,7 @@ class ProjectController extends Controller
                 'name' => 'required | min:5 |max:50',
                 'image' => 'required |image',
                 'description' => 'required |min:10',
-                'github_url' => 'required |url',
+                'github_url' => 'required',
             ]
 
         );
@@ -92,8 +92,6 @@ class ProjectController extends Controller
 
         $project->name= $data['name'];
         $project->description= $data['description'];
-        $project->github_url= $data['github_url'];
-
         $project->save();
         return redirect()->route('admin.project.show', ['project'=> $project])->with('success',
         'Project updated successfully');
