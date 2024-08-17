@@ -11,11 +11,11 @@
             </svg>
         </div>
         <h1 class="display-5 fw-bold">
-            Welcome to Laravel+Bootstrap 5
+            Welcome to My Homepage
         </h1>
 
-        <p class="col-md-8 fs-4">This a preset package with Bootstrap 5 views for laravel projects including laravel breeze/blade. It works from laravel 9.x to the latest release 10.x</p>
-        <a href="https://github.com/lambia/LC-20230627-laravel-template" class="btn btn-primary btn-lg" type="button">Documentation</a>
+        <p class="col-md-8 fs-4">Click the bottom to see my GitHub</p>
+        <a href="https://github.com/matteocalonaci" class="btn btn-primary btn-lg" type="button">My GitHub Link</a>
     </div>
 </div>
 
