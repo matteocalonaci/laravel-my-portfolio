@@ -19,6 +19,8 @@
             </div>
             <p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e($project->description))) !!}</p>
         <p><b>GitHub:</b> <a href="{{$project->github_url}}">{{$project->github_url}}</a> </p>
+        <p><i class="{{$project->technology->icon}}"></i></p>
+
 
 
 

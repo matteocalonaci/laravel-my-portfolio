@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,9 +15,11 @@ class ProjectController extends Controller
     public function index()
     {
         $project = Project::all();
+        $technology = Technology::all();
         $data =
             [
                 'project' => $project,
+                'technology' => $technology
             ];
         return view('admin.project.index', $data);
     }
@@ -24,10 +27,12 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('admin.project.create');
-    }
+   public function create()
+{
+    $technology = Technology::all();
+    $project = new Project();
+    return view('admin.project.create', compact('technology', 'project'));
+}
 
     /**
      * Store a newly created resource in storage.
@@ -40,6 +45,7 @@ class ProjectController extends Controller
                 'image' => 'required |image',
                 'description' => 'required |min:10',
                 'github_url' => 'required',
+                'technology_id' => 'required',
             ]
 
         );
@@ -51,6 +57,7 @@ class ProjectController extends Controller
 
         $newProject = new Project();
         $newProject->fill($data);
+        $newProject->technology_id = $data['technology_id'];
         $newProject->save();
         return redirect()->route('admin.project.show', ['project'=> $newProject])->with('success', 'Project created successfully');
     }
@@ -72,9 +79,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $technology = Technology::all();
         $data =
             [
                 'project' => $project,
+                'technology' => $technology,
             ];
         return view('admin.project.edit', $data);
     }
@@ -86,11 +95,12 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
-        $project->name= $data['name'];
-        $project->description= $data['description'];
+        $project->name = $data['name'];
+        $project->description = $data['description'];
+        $project->technology_id = $data['technology_id'];
         $project->save();
-        return redirect()->route('admin.project.show', ['project'=> $project])->with('success',
-        'Project updated successfully');
+
+        return redirect()->route('admin.project.show', ['project' => $project])->with('success', 'Project updated successfully');
     }
 
     /**

@@ -20,6 +20,7 @@ class ProjectSeeder extends Seeder
             $newProject->image= "https://picsum.photos/id/" . rand(1, 500) . "/800/200";
             $newProject->description = $faker->text(100);
             $newProject->github_url = $faker-> text(20);
+            $newProject->technology_id = $faker->numberBetween(1,4);
             $newProject->save();
 
     }

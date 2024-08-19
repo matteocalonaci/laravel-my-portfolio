@@ -16,4 +16,9 @@ class Project extends Model
         "github_url",
     ];
 
+    public function technology()
+    {
+        return $this->belongsTo(Technology::class);
+    }
+
 }

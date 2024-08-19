@@ -15,12 +15,15 @@
 																												<img src="{{ asset('storage/' . $progetto->image) }}" alt="image">
 																								@endif
 																				</div>
-                                                                                <p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 150, ' [Read more]')))) !!}</p>																				<p><b>Link GitHub:</b> <a href="{{ $progetto->github_url }}">{{ $progetto->github_url }}</a></p>
+																				<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 150, ' [Read more]')))) !!}</p>
+																				<p><b>Link GitHub:</b> <a href="{{ $progetto->github_url }}">{{ $progetto->github_url }}</a></p>
+                                                                                <p><i class="{{$progetto->technology->icon}}"></i></p>
 																</div>
 																<div class="card-footer text-center">
 																				<a href="{{ route('admin.project.show', $progetto->id) }}" class="btn btn-primary p-1">View Details</a>
 																				<a href="{{ route('admin.project.edit', $progetto->id) }}" class="btn btn-warning p-1">Edit</a>
 																				<form action="{{ route('admin.project.destroy', $progetto->id) }}" method="POST" class="d-inline">
+
 																								@csrf
 																								@method('DELETE')
 																								<button type="submit" class="btn btn-danger p-1">Delete</button>

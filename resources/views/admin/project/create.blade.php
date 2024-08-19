@@ -31,6 +31,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="technology_id" class="form-label">Technology</label>
+                <select class="form-select dorm-select-lg" name="technology_id" id="technologies">
+                    @foreach ($technology as $tech)
+                        <option value="{{ $tech->id }}" {{ old('technology_id', $project->technology_id) == $tech->id ? 'selected' : '' }}>{{ $tech->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Add</button>
 </form>
 

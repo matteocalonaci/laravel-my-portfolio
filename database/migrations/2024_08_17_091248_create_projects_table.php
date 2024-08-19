@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('image');
             $table->text('description');
             $table->string('github_url');
-
             $table->timestamps();
+            $table->foreignId('technology_id')->constrained();
         });
     }
 
