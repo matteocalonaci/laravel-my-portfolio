@@ -27,6 +27,15 @@
                                   @endforeach
                               </select>
                              </div>
+                             <div class="form-group">
+                                <label for="language" class="form-label p-2"><b>Language:</b></label>
+                                <div class="check-box">
+                                    @foreach($language as $lang)
+                                        <input type="checkbox" name="languages[]" value="{{ $lang->id }}" @if(in_array($lang->id, $project->languages->pluck('id')->toArray())) checked @endif>
+                                        <label>{{ $lang->name }}</label>
+                                    @endforeach
+                                </div>
+                            </div>
 								<button type="submit" class="btn btn-primary">Edit</button>
 				</form>
 @endsection

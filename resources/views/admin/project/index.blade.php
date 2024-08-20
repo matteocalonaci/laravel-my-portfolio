@@ -15,9 +15,13 @@
 																												<img src="{{ asset('storage/' . $progetto->image) }}" alt="image">
 																								@endif
 																				</div>
-																				<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 150, ' [Read more]')))) !!}</p>
+																				<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 50, ' [Read more]')))) !!}</p>
 																				<p><b>Link GitHub:</b> <a href="{{ $progetto->github_url }}">{{ $progetto->github_url }}</a></p>
-                                                                                <p><i class="{{$progetto->technology->icon}}"></i></p>
+                                                                                <p>{{$progetto->technology->name}}</p>
+                                                                                @foreach ($progetto->languages as $language)
+                                                                                <i class="{{ $language->icon }}"></i>
+                                                                            @endforeach
+
 																</div>
 																<div class="card-footer text-center">
 																				<a href="{{ route('admin.project.show', $progetto->id) }}" class="btn btn-primary p-1">View Details</a>
