@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -16,10 +18,12 @@ class ProjectController extends Controller
     {
         $project = Project::all();
         $technology = Technology::all();
+        $language = Language::all();
         $data =
             [
                 'project' => $project,
-                'technology' => $technology
+                'technology' => $technology,
+                'language' => $language,
             ];
         return view('admin.project.index', $data);
     }
@@ -30,8 +34,16 @@ class ProjectController extends Controller
    public function create()
 {
     $technology = Technology::all();
+    $language = Language::all();
     $project = new Project();
-    return view('admin.project.create', compact('technology', 'project'));
+
+    $data =
+    [
+        'technology' => $technology,
+        'language' => $language,
+        'project' => $project
+        ];
+    return view('admin.project.create', $data);
 }
 
     /**
@@ -46,6 +58,9 @@ class ProjectController extends Controller
                 'description' => 'required |min:10',
                 'github_url' => 'required',
                 'technology_id' => 'required',
+                "language" => "array",
+                "language.*" => "exists:language,id"
+
             ]
 
         );
@@ -59,6 +74,9 @@ class ProjectController extends Controller
         $newProject->fill($data);
         $newProject->technology_id = $data['technology_id'];
         $newProject->save();
+
+         // Sync languages with the project
+    $newProject->languages()->sync($request->input('languages', []));
         return redirect()->route('admin.project.show', ['project'=> $newProject])->with('success', 'Project created successfully');
     }
 
@@ -80,10 +98,13 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $technology = Technology::all();
+        $language = Language::all();
         $data =
             [
                 'project' => $project,
                 'technology' => $technology,
+                'language' => $language,
+
             ];
         return view('admin.project.edit', $data);
     }
@@ -99,6 +120,8 @@ class ProjectController extends Controller
         $project->description = $data['description'];
         $project->technology_id = $data['technology_id'];
         $project->save();
+
+        $project->languages()->sync($request->input('languages', []));
 
         return redirect()->route('admin.project.show', ['project' => $project])->with('success', 'Project updated successfully');
     }

@@ -21,4 +21,8 @@ class Project extends Model
         return $this->belongsTo(Technology::class);
     }
 
+    public function languages()
+{
+    return $this->belongsToMany(Language::class, 'project_language');
+}
 }

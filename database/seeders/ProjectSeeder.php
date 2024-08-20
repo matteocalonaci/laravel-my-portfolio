@@ -21,7 +21,10 @@ class ProjectSeeder extends Seeder
             $newProject->description = $faker->text(100);
             $newProject->github_url = $faker-> text(20);
             $newProject->technology_id = $faker->numberBetween(1,4);
+
             $newProject->save();
+            $newProject->languages()->attach($faker->numberBetween(1,4)) ;
+
 
     }
     }
