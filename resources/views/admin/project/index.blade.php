@@ -15,7 +15,7 @@
 																												<img src="{{ asset('storage/' . $progetto->image) }}" alt="image">
 																								@endif
 																				</div>
-																				<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 50, ' [Read more]')))) !!}</p>
+																				<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e(Str::limit($progetto->description, 100, ' [Read more]')))) !!}</p>
 																				<p><b>Link GitHub:</b> <a href="{{ $progetto->github_url }}">{{ $progetto->github_url }}</a></p>
                                                                                 <p>{{$progetto->technology->name}}</p>
                                                                                 @foreach ($progetto->languages as $language)
