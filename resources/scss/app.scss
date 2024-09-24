@@ -36,11 +36,11 @@ i{
     justify-content: space-between
 }
 
-.card-body {
+.card-body-show {
     display: none;
 }
 
-.img_container:hover + .card-body {
+.img_container:hover + .card-body-show {
     display: block;
     width: 80%;
     padding: 1rem;
