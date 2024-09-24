@@ -9,7 +9,7 @@
 
 .card{
     width: 22rem;
-    height: 40rem;
+    height: 20rem;
     margin: 1rem;
     background-color: rgba(255, 255, 255, 0.118);
     margin-bottom: 5rem;
@@ -34,4 +34,18 @@ i{
 .check-box{
     display: flex;
     justify-content: space-between
+}
+
+.card-body {
+    display: none;
+}
+
+.img_container:hover + .card-body {
+    display: block;
+    width: 80%;
+    padding: 1rem;
+    background-color: rgba(59, 59, 59, 0.692);
+    color: white;
+    position: absolute;
+    bottom: 2rem;
 }

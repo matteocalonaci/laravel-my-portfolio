@@ -116,11 +116,24 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
+        // Validate the image input
+        $request->validate([
+            'image' => 'nullable|image',
+        ]);
+
+        // Store the new image in the images storage
+        if ($request->hasFile('image')) {
+            $image_path = Storage::put('images', $request->file('image'));
+            $project->image = $image_path;
+        }
+
+        // Update the project details
         $project->name = $data['name'];
         $project->description = $data['description'];
         $project->technology_id = $data['technology_id'];
         $project->save();
 
+        // Sync languages with the project
         $project->languages()->sync($request->input('languages', []));
 
         return redirect()->route('admin.project.show', ['project' => $project])->with('success', 'Project updated successfully');

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-				<form method="POST" action="{{ route('admin.project.update', $project->id) }}">
-								@csrf
-								@method('PUT')
+<form method="POST" action="{{ route('admin.project.update', $project->id) }}" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 								<div class="form-group">
 												<label for="name" class="form-label">Name:</label>
 												<input type="text" class="form-control" id="name" name="name" value="{{ $project->name }}">

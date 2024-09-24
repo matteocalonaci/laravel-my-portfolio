@@ -13,33 +13,13 @@
 																@endif
 
 												</div>
+                                                <div class="card-body">
 												<p class="mt-4"><b>Description:</b> {!! preg_replace('/\n{2,}/', '</p><p>', nl2br(e($project->description))) !!}</p>
-												<p><b>GitHub:</b> <a href="{{ $project->github_url }}">{{ $project->github_url }}</a> </p>
+												<p><b>GitHub:</b> <a class="text-white" href="{{ $project->github_url }}">{{ $project->github_url }}</a> </p>
                                                 <p><b>{{$project->technology->name}}
 												<p><b>Tecnologia Usata:</b></p>
 												@foreach ($project->languages as $language)
 																<i class="{{ $language->icon }}"></i>
 												@endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-												{{-- <div class="card-footer text-center">
-                <a href="{{ route('admin.project.show', $project->id) }}" class="btn btn-primary p-">Vai ai dettagli</a>
-                <a href="{{ route('admin.project.edit', $project->id) }}" class="btn btn-warning p-1">Modifica</a>
-                <form action="{{ route('admin.project.destroy', $project->id) }}" method="POST
-                    " class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger p-1">Elimina</button>
-                    </form>
-        </div> --}}
+                                                </div>
 								@endsection
